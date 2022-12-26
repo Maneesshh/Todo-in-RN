@@ -12,8 +12,5 @@ web-build/
 
 # macOS
 .DS_Store
-/assets/Images/ggg.jpg
-/assets/Images/gkkhg.jpg
-/assets/Images/me.jpg
-/assets/Images/mnkey.jpg
-/assets/Images/rajeev.jpg
+/assets/Images
+

@@ -1,75 +1,64 @@
-import React, {useState} from "react";
-import {Button, TextInput, View, StyleSheet, Text} from "react-native";
-import {FlatList} from "react-native-web";
-export default function Todo(){
-    const [item,setItem]=useState("");
-    const [items, setItems] = useState([]);
-    const addItem = () => {
-        setItems([item, ...items]);
+import React, { useState } from 'react';
+import {View, Text, StyleSheet, Button, TextInput, Switch} from 'react-native';
 
-        // js -> destructuring, spread operator
+const TodoList = () => {
+    const [todos, setTodos] = useState([]);
+    const [newTodo, setNewTodo] = useState('');
 
-        setItem("");
+    const addTodo = () => {
+        setTodos([...todos, { description: newTodo, completed: false }]);
+        setNewTodo('');
     };
-    const onItemChange = (event) => setItem(event.target.value);
+    const deleteTodo = (index) => {
+        const updatedTodos = [...todos];
+        updatedTodos.splice(index, 1);
+        setTodos(updatedTodos);
+    };
+    return (
+        <View style={styles.container}>
+            <TextInput
+                style={styles.input}
+                value={newTodo}
+                onChangeText={setNewTodo}
+                placeholder="Enter a new to-do"
+            />
+            <Button title="Add" onPress={addTodo} />
+            {todos.map((todo, index) => (
+                <View key={index} style={{backgroundColor: index % 2 === 0 ? 'green' : 'red'}}>
+                    <Text  style={{margin:10}}>{todo.description}
+                    </Text>
+                </View>
+            ))}
+        <View style={{margin:40}}>
+            <Button title="Delete" color="red" onPress={deleteTodo} />
+        </View>
+        </View>
+    );
+};
 
-    function SingleItem({
-                            item,
-                            backgroundColor,
-                        }: {
-        item: String;
-        backgroundColor: String;
-    }) {
-        return (
-
-            <Text style={{ backgroundColor: backgroundColor, margin: 10 }}>{item}</Text>
-        );
-    }
-
-    return(
-     <View style={styles.container}>
-         <TextInput style={styles.input} placeholder="Enter Text here!" value={item} onChangeText={onItemChange}/>
-     <View style={styles.buttons}>
-         <Button title="Add"  onPress={addItem} />
-     </View>
-        <Text>
-         To Do ({items.length})
-         <FlatList>
-             {items.map((singleItem, index) => (
-                 <SingleItem
-                     item={singleItem}
-                     backgroundColor={index % 2 === 0 ? "gray" : "green"}
-                 />
-             ))}
-         </FlatList>
-        </Text>
-         <Text style={{fontWeight:'bold',margin:10}}>Typed Text is :::{item}</Text>
-     </View>
- );
-}
-const styles=StyleSheet.create({
-    input:{
-        height:70,
-        width: '100%',
-        margin:0,
-        padding:20,
-        borderWidth: 2,
-        fontsize:10,
-        backgroundColor:'white'
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 20,
+        margin:10
     },
-    container:{
-        height:68,
-        width:150,
-        marginHorizontal: 20,
-        alignItems:"center",
-        justifyContent:"center",
-        padding:3,
+    input: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginBottom: 20,
+        padding: 10,
     },
-    buttons:{
-        height:40,
-        width:'50%',
-        margin: 10,
-        borderRadius:20,
-
-    }
+    todoItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    todoText: {
+        fontSize: 16,
+    },
+    completedText: {
+        color: 'red',
+    },
 });
+
+export default TodoList;
