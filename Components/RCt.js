@@ -4,7 +4,7 @@ import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
 
 export default () => {
-    const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
+    const { handleSubmit, control, reset, formState: { errors } } = useForm({
         defaultValues: {
             firstName: '',
             lastName: ''
@@ -13,9 +13,6 @@ export default () => {
     const onSubmit = data => {
        alert(data.firstName+" "+data.lastName);
     };
-
-    console.log('errors', errors);
-
     return (
         <View style={styles.container}>
             <Text style={styles.label}>First name</Text>
