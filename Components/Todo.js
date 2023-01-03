@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, Text, StyleSheet, Button, TextInput, Switch} from 'react-native';
+import {View, Text, StyleSheet, Button, TextInput} from 'react-native';
 
 const TodoList = () => {
     const [todos, setTodos] = useState([]);
@@ -56,9 +56,7 @@ const styles = StyleSheet.create({
     todoText: {
         fontSize: 16,
     },
-    completedText: {
-        color: 'red',
-    },
+
 });
 
 export default TodoList;
