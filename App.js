@@ -1,8 +1,9 @@
-import {StyleSheet, View,Button} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 const PlaceholderImage = require('./assets/Images/ggg.jpg');
 import ImageViewer from './Components/ImageViewer';
 import Todo from "./Components/Todo";
 import Rct from "./Components/RCt";
+import Hooksform from "./Components/Hooksform";
 import React from "react";
 export default function App() {
     return (
@@ -14,7 +15,8 @@ export default function App() {
             {/* /!*<Button theme="primary" title="Click Me Please !"/>*!/*/}
             {/*   </View>*/}
             {/*<Todo/>*/}
-            <Rct/>
+            {/*<Rct/>*/}
+            <Hooksform/>
 
         </View>
     );
