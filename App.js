@@ -1,34 +1,24 @@
 import { StyleSheet, View, Text } from "react-native";
-
-const PlaceholderImage = require("./assets/Images/ggg.jpg");
-import ImageViewer from "./Components/ImageViewer";
-import Todo from "./Components/Todo";
-import Rct from "./Components/RCt";
-import Hooksform from "./Components/Hooksform";
 import Reg from "./Components/Reg";
 import React from "react";
 import Login from "./Components/login";
 import { NavigationContainer } from "@react-navigation/native";
+import Navigator from "./routes/homeStack";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <View style={styles.container}>
-        <View style={styles.imageContainer}>
-          {/*    <ImageViewer placeholderImageSource={PlaceholderImage} />*/}
-          {/*</View>*/}
-          {/* <View style={styles.footer}>*/}
-          {/* /!*<Button theme="primary" title="Click Me Please !"/>*!/*/}
-          {/*   </View>*/}
-          {/*<Todo/>*/}
-          <Reg />
-        </View>
-        <View style={styles.view2}>
-          <Login />
-        </View>
-        {/*<Hooksform/>*/}
-      </View>
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <View style={styles.container}>
+    //     <View style={styles.imageContainer}>
+    //       <Reg />
+    //     </View>
+    //     <View style={styles.view2}>
+    //       <Login />
+    //     </View>
+    //     {/*<Hooksform/>*/}
+    //   </View>
+    // </NavigationContainer>
+    <Navigator />
   );
 }
 const styles = StyleSheet.create({

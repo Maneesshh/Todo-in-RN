@@ -8,7 +8,7 @@ const schema = yup.object().shape({
   phone: yup.string().email().required(),
   password: yup.string().min(8).max(32).required(),
 });
-export default () => {
+export default ({ navigation }) => {
   const {
     handleSubmit,
     control,
@@ -23,9 +23,12 @@ export default () => {
   const onsubmit = (data) => {
     alert(data.phone + " " + data.password);
   };
+  const pressHandler = () => {
+    navigation.navigate("SignUp");
+    // navigation.push("SignUp");
+  };
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Login</Text>
       <Text style={styles.label}>Phone or Email</Text>
       <Controller
         render={({ field: { onChange, onBlur, value } }) => (
@@ -65,6 +68,11 @@ export default () => {
         </Text>
       )}
       <Button title="Sign In" onPress={handleSubmit(onsubmit)} />
+      <Button
+        title="Create new account "
+        style={{ flex: 2 }}
+        onPress={pressHandler}
+      />
     </View>
   );
 };
@@ -88,7 +96,7 @@ const styles = StyleSheet.create({
     borderColor: "#000",
     borderStyle: "solid",
     borderRadius: 1,
-    marginBottom: 5,
+    marginBottom: 20,
   },
   text: {
     fontWeight: "bold",

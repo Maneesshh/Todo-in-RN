@@ -29,7 +29,6 @@ export default () => {
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>SignUp</Text>
       <Text style={styles.label}> Full Name</Text>
       <Controller
         render={({ field: { onChange, onBlur, value } }) => (
