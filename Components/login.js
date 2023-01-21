@@ -21,11 +21,15 @@ export default ({ navigation }) => {
     resolver: yupResolver(schema),
   });
   const onsubmit = (data) => {
-    alert(data.phone + " " + data.password);
+    navigation.navigate("Welcome", data);
+    // alert(data.phone + " " + data.password);
   };
-  const pressHandler = () => {
+  const createAcc = () => {
     navigation.navigate("SignUp");
     // navigation.push("SignUp");
+  };
+  const forgotPw = () => {
+    navigation.navigate("ForgotPw");
   };
   return (
     <View style={styles.container}>
@@ -55,6 +59,7 @@ export default ({ navigation }) => {
             value={value}
             onBlur={onBlur}
             style={styles.input}
+            secureTextEntry={true}
           />
         )}
         name="password"
@@ -68,11 +73,12 @@ export default ({ navigation }) => {
         </Text>
       )}
       <Button title="Sign In" onPress={handleSubmit(onsubmit)} />
-      <Button
-        title="Create new account "
-        style={{ flex: 2 }}
-        onPress={pressHandler}
-      />
+      <Text onPress={forgotPw} style={styles.text2}>
+        Forgot Password ?
+      </Text>
+      <View style={{ marginVertical: 10 }}>
+        <Button title="Create new account " onPress={createAcc} />
+      </View>
     </View>
   );
 };
@@ -84,6 +90,11 @@ const styles = StyleSheet.create({
     marginTop: 90,
     marginLeft: 40,
     flex: 3,
+  },
+  text2: {
+    marginLeft: "35%",
+    marginTop: 10,
+    fontWeight: "bold",
   },
   label: {
     color: "#000",

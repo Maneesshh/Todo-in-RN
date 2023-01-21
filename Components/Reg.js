@@ -84,7 +84,7 @@ export default () => {
 };
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
+    height: "50%",
     width: "80%",
     padding: 6,
     marginTop: 50,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: "#fff",
     marginTop: 7,
-    marginBottom: 5,
+    marginBottom: 10,
   },
   text: {
     fontWeight: "bold",
@@ -113,5 +113,6 @@ const styles = StyleSheet.create({
   error: {
     color: "red",
     fontWeight: "bold",
+    marginBottom: 10,
   },
 });
