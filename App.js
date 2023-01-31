@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import Reg from "./Components/Reg";
 import React from "react";
 import Login from "./Components/login";
