@@ -1,25 +1,10 @@
 import { StyleSheet } from "react-native";
-import Reg from "./Components/Reg";
 import React from "react";
-import Login from "./Components/login";
-import { NavigationContainer } from "@react-navigation/native";
+
 import Navigator from "./routes/homeStack";
 
 export default function App() {
-  return (
-    // <NavigationContainer>
-    //   <View style={styles.container}>
-    //     <View style={styles.imageContainer}>
-    //       <Reg />
-    //     </View>
-    //     <View style={styles.view2}>
-    //       <Login />
-    //     </View>
-    //     {/*<Hooksform/>*/}
-    //   </View>
-    // </NavigationContainer>
-    <Navigator />
-  );
+  return <Navigator />;
 }
 const styles = StyleSheet.create({
   container: {

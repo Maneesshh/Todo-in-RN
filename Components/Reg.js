@@ -19,26 +19,24 @@ const schema = yup.object().shape({
   age: yup.number().min(1).max(100).required(),
   password: yup.string().min(8).max(32).required(),
 });
-const storeData = async (value) => {
+const onsubmit = async (data) => {
   try {
-    const jsonValue = JSON.stringify(value);
-    await AsyncStorage.setItem("Email", jsonValue);
-  } catch (e) {
-    console.log(e);
+    // alert(data.fullName);
+    await AsyncStorage.setItem("email", data.email);
+    await AsyncStorage.setItem("name", data.fullName);
+    await AsyncStorage.setItem("age", data.age.toString());
+    await AsyncStorage.setItem("password", data.password);
+    alert("Your information has been saved successfully");
+  } catch (error) {
+    alert("Error saving user information:" + error);
   }
 };
-const getMyObject = async () => {
-  try {
-    const jsonValue = await AsyncStorage.getItem("Email");
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
-  } catch (e) {}
 
-  console.log("Done.");
-};
-export default ({ navigation }) => {
+export default ({}) => {
   const [showPassword, setShowPassword] = useState(true);
   const {
     control,
+    handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -58,6 +56,7 @@ export default ({ navigation }) => {
             style={styles.input}
             onChangeText={(value) => onChange(value)}
             value={value}
+            placeholder="Enter Name"
             onBlur={onBlur}
           />
         )}
@@ -72,11 +71,13 @@ export default ({ navigation }) => {
       <Controller
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            textContentType="emailAddress"
+            textContentType={"emailAddress"}
             onChangeText={(value) => onChange(value)}
             value={value}
             style={styles.input}
             onBlur={onBlur}
+            placeholder="Enter email"
+            keyboardType="email-address"
           />
         )}
         name="email"
@@ -91,12 +92,12 @@ export default ({ navigation }) => {
             style={styles.input}
             onChangeText={(value) => onChange(value)}
             value={value}
+            keyboardType={"number-pad"}
             onBlur={onBlur}
           />
         )}
         name="age"
         control={control}
-        rules={{ required: true }}
         defaultValue=" "
       />
       {errors.age && (
@@ -113,6 +114,7 @@ export default ({ navigation }) => {
               onChangeText={(value) => onChange(value)}
               value={value}
               onBlur={onBlur}
+              placeholder="Enter password"
               secureTextEntry={showPassword}
             />
             <TouchableOpacity
@@ -130,18 +132,10 @@ export default ({ navigation }) => {
         control={control}
         defaultValue={" "}
       />
-
       {errors.password && (
         <Text style={styles.error}>Password is required</Text>
       )}
-
-      <Button
-        title="Sign Up"
-        onPress={() => {
-          storeData(control).then(() => navigation.navigate("Welcome"));
-        }}
-      />
-      <Button title=" Up" onPress={getMyObject} />
+      <Button title="Submit" onPress={handleSubmit(onsubmit)} />
     </View>
   );
 };

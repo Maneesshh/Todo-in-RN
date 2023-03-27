@@ -18,8 +18,8 @@ export default () => {
     },
     resolver: yupResolver(schema),
   });
-  const onsubmit = () => {
-    alert("Verification Email Sent successfully ");
+  const onsubmit = (data) => {
+    alert("Verification Email Sent successfully to " + data.email);
   };
   return (
     <View style={styles.container}>
